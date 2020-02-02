@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Home</title>
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <style type="text/css">
+            hr {
+                border-top: 8px double #8c8b8b;
+            }
+            .largura {
+                width: 300px
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid largura"  align="center">
+            <h4>Efetue o cálculo do valor de sua ligação:</h4>
+            <br>
+        </div>
+
+        <div class="container bg-info largura" align="center">
+            <form action="#" th:action="@{/calcular}" 
+                  th:object="${dadosParaCalculo}" method="post">
+                <!--<input th:field="*{id}" type="hidden" id="id" />-->
+
+                <div class="form-row">
+                    <div class="col pt-2">
+                        <label for="dddOrigem">
+                            <strong>DDD Origem</strong>
+                        </label>
+                        <select 
+                            id="dddOrigem"
+                            class="chosen-select form-control">
+                            <option 
+                                th:each="ddd : ${dadosParaCalculo.dddOrigem}"
+                                th:value="${ddd.id}"
+                                th:text="${ddd.codDDD}"
+                                th:field="*{dddOrigem}" />
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col pt-2">
+                        <label for="dddDestino">
+                            <strong>DDD Destino</strong>
+                        </label>
+                        <select
+                            id="dddDestino"
+                            class="chosen-select form-control">
+                            <option 
+                                th:each="ddd : ${dadosParaCalculo.dddDestino}"
+                                th:value="${ddd.id}"
+                                th:text="${ddd.codDDD}"
+                                th:field="*{dddDestino}" />
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col pt-2">
+                        <label for="tempo">
+                            <strong>Tempo da Ligação</strong>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="minutos"
+                            class="chosen-select form-control"
+                            placeholder="Tempo em Minutos"
+                            th:field="*{minutos}" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col pt-2">
+                        <label for="plano">
+                            <strong>Plano</strong>
+                        </label>
+                        <select 
+                            id="plano"
+                            class="chosen-select form-control">
+                            <option 
+                                th:each="plano : ${dadosParaCalculo.planoEscolhido}"
+                                th:value="${plano.id}"
+                                th:text="${plano.nome}"
+                                th:field="*{planoEscolhido}" />
+                        </select>
+                    </div>
+                </div>
+                <div class="container" align="center">
+                    <div class="col mt-2">
+                        <button class="btn btn-secondary btn-block" type="submit">
+                            <strong>EFETUAR CÁLCULO</strong>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--        <div class="container"  align="center">
+                    <div th:unless="${#lists.isEmpty(livros)}">
+                        <hr>
+                    </div>
+                </div>-->
+
+        <script src="http://code.jquery.com/jquery.js" />
+        <script src="/bootstrap/js/bootstrap.min.js" />
+    </body>
+</html>

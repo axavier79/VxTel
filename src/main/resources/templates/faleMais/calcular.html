@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Resultado</title>
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>Resultado</h1>
+            </div>
+            <div class="row">
+                <a class="btn btn-primary" href="/home">HOME</a>
+            </div>
+
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>DDD Origem</th>
+                            <th>DDD Destino</th>
+                            <th>Tempo (min.)</th>
+                            <th>Plano Fale Mais</th>
+                            <th>Com Fale Mais</th>
+                            <th>Sem Fale Mais</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!--<th:block th:each="resultado : ${resultados}">-->
+                    <th:block th:object="${resultado}">
+                        <tr>
+                            <td th:text="${resultado.dddOrigem}" />
+                            <td th:text="${resultado.dddDestino}" />
+                            <td th:text="${resultado.minutos}" />
+                            <td th:text="${resultado.planoEscolhido}" />
+                            <td th:text="'R$ ' + ${resultado.valorComPlano}" />
+                            <td th:text="'R$ ' + ${resultado.valorSemPlano}" />
+                        </tr>
+                    </th:block>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js" />
+        <script src="/bootstrap/js/bootstrap.min.js" />
+    </body>
+</html>
